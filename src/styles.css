@@ -44,7 +44,7 @@ button {
 }
 
 .dialog[id='animated-dialog'][aria-hidden='true'] {
-  display: block;
+  display: flex;
   pointer-events: none;
   visibility: hidden;
   opacity: 0;
