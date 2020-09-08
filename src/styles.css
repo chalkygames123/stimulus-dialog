@@ -8,13 +8,17 @@ html {
   font-family: serif;
 }
 
-h1:first-child {
+.dialog h1 {
   margin-top: 0;
 }
 
 button {
   padding: 6px 12px;
   border: 1px solid #000;
+}
+
+button:not(:disabled):not([aria-disabled='true']) {
+  cursor: pointer;
 }
 
 .ellipsis {
