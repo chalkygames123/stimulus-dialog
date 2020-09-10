@@ -82,7 +82,7 @@ export default class extends Controller {
     } else {
       const tabbableDialogDescendants = tabbable(this.element)
 
-      if (tabbableDialogDescendants.length > 0) {
+      if (tabbableDialogDescendants.length) {
         tabbableDialogDescendants[0].focus()
       } else {
         this.element.focus()
