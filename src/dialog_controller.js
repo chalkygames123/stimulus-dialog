@@ -36,6 +36,8 @@ export default class extends Controller {
   }
 
   show() {
+    if (this.isOpen) return
+
     this.element.removeAttribute('aria-hidden')
 
     this.appRoot.setAttribute('aria-hidden', 'true')
@@ -91,13 +93,15 @@ export default class extends Controller {
   }
 
   hide() {
+    if (!this.isOpen) return
+
     this.element.setAttribute('aria-hidden', 'true')
 
     this.appRoot.removeAttribute('aria-hidden')
 
     window.removeEventListener('keydown', this.handleKeyDown)
 
-    this.enableTabbableAppRootDescendants()
+    this.restoreTabbableAppRootDescendants()
 
     this.restoreFocus()
 
@@ -114,7 +118,7 @@ export default class extends Controller {
     }
   }
 
-  enableTabbableAppRootDescendants() {
+  restoreTabbableAppRootDescendants() {
     this.tabbableAppRootDescendants.forEach((el) => {
       const previousTabIndex = this.previousTabIndexes.get(el)
 
