@@ -52,7 +52,7 @@ button:not(:disabled):not([aria-disabled='true']) {
   pointer-events: none;
   visibility: hidden;
   opacity: 0;
-  transition: opacity 0.3s, visibility 0s 0.3s;
+  transition: visibility 0s 0.3s, opacity 0.3s;
 }
 
 /* This extra element is required for scrolling to work correctly in Firefox and IE11 when there is padding */
