@@ -42,8 +42,6 @@ button:not(:disabled):not([aria-disabled='true']) {
 }
 
 .dialog[id='animated-dialog'] {
-  visibility: visible;
-  opacity: 1;
   transition: opacity 0.3s;
 }
 
