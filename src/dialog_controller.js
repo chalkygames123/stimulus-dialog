@@ -28,7 +28,7 @@ export default class extends Controller {
 
     this.handleTransitionEnd = this.handleTransitionEnd.bind(this)
 
-    this.previousTabIndexes = new Map()
+    this.previousTabIndexes = new WeakMap()
 
     this.isOpen = this.element.getAttribute('aria-hidden') !== 'true'
 
@@ -127,9 +127,9 @@ export default class extends Controller {
       } else {
         el.removeAttribute('tabindex')
       }
-    })
 
-    this.previousTabIndexes.clear()
+      this.previousTabIndexes.delete(el)
+    })
   }
 
   restoreFocus() {
