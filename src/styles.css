@@ -63,7 +63,7 @@ button:not(:disabled):not([aria-disabled='true']) {
   margin: auto;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 48em) {
   .dialog__inner {
     box-sizing: content-box;
     width: 860px;
