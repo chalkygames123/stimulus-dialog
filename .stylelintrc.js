@@ -8,7 +8,7 @@ module.exports = {
     'at-rule-empty-line-before': [
       'always',
       {
-        except: ['first-nested', 'blockless-after-same-name-blockless'],
+        except: ['blockless-after-same-name-blockless', 'first-nested'],
         ignore: ['after-comment'],
         ignoreAtRules: ['else'],
       },
@@ -18,7 +18,7 @@ module.exports = {
     'declaration-empty-line-before': [
       'always',
       {
-        except: ['first-nested', 'after-declaration'],
+        except: ['after-declaration', 'first-nested'],
         ignore: ['after-comment'],
       },
     ],
