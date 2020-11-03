@@ -8,10 +8,6 @@ html {
   font-family: serif;
 }
 
-.dialog h1 {
-  margin-top: 0;
-}
-
 button {
   padding: 6px 12px;
   touch-action: manipulation;
@@ -22,8 +18,20 @@ button:not(:disabled):not([aria-disabled='true']) {
   cursor: pointer;
 }
 
+p {
+  margin-top: 1em;
+}
+
+.opener-wrapper {
+  margin-top: 1em;
+}
+
 .ellipsis {
   line-height: 5;
+}
+
+.close {
+  margin-top: 1em;
 }
 
 .dialog {
