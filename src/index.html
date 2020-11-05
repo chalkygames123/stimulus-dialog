@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
 
@@ -20,21 +20,20 @@
       <main>
         <h1>Stimulus Dialog</h1>
         <p>Source: <a href="https://github.com/chalkygames123/stimulus-dialog" rel="noreferrer noopener">https://github.com/chalkygames123/stimulus-dialog</a></p>
-        <div class="opener-wrapper">
+        <div style="margin-top: 1em;">
           <button type="button" data-dialog-show="basic-dialog">Show Basic Dialog</button>
         </div>
-        <p class="ellipsis">…<br />…<br />…<br />…<br />…<br /></p>
-        <div class="opener-wrapper">
+        <div style="margin-top: 1em;">
           <button type="button" data-dialog-show="long-dialog">Show Long Dialog</button>
         </div>
-        <p class="ellipsis">…<br />…<br />…<br />…<br />…<br /></p>
-        <div class="opener-wrapper">
+        <div style="margin-top: 1em;">
           <button type="button" data-dialog-show="animated-dialog">Show Animated Dialog</button>
         </div>
-        <p class="ellipsis">…<br />…<br />…<br />…<br />…<br /></p>
-        <div class="opener-wrapper">
+        <div style="margin-top: 1em;">
           <button type="button" data-dialog-show="full-screen-dialog">Show Full-screen Dialog</button>
         </div>
+        <p class="ellipsis">…<br />…<br />…<br />…<br />…<br /></p>
+        <p style="text-align: center;">The end of the page</p>
       </main>
     </div>
     <div id="dialog-root">
@@ -78,7 +77,9 @@
           <div class="full-screen-dialog__document" role="document">
             <h2 id="full-screen-dialog-title">Full-screen Dialog Title</h2>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Autem, nostrum? Officia quas recusandae quos obcaecati earum necessitatibus ullam eveniet temporibus dicta, perspiciatis, illo quidem eum ipsa odit perferendis repudiandae culpa!</p>
-            <button class="close" type="button" data-action="dialog#hide">Close</button>
+            <div style="margin-top: 1em;">
+              <button type="button" data-action="dialog#hide">Close</button>
+            </div>
           </div>
         </div>
       </div>
