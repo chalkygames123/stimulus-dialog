@@ -13,7 +13,11 @@ export default class extends Controller {
   }
 
   initialize() {
-    this.appRoot = document.getElementById(this.data.get('app-root'))
+    this.inertRoots = this.data.has('inertRoots')
+      ? [...document.querySelectorAll(this.data.get('inertRoots'))]
+      : [...this.element.parentElement.children].filter(
+          (el) => el !== this.element
+        )
 
     this.handleOpenerClick = this.handleOpenerClick.bind(this)
 
@@ -28,7 +32,9 @@ export default class extends Controller {
 
     this.handleTransitionEnd = this.handleTransitionEnd.bind(this)
 
-    this.previousTabIndexes = new WeakMap()
+    this.originalAriaHiddenValues = new WeakMap()
+
+    this.originalTabIndexes = new WeakMap()
 
     this.isOpen = this.element.getAttribute('aria-hidden') !== 'true'
 
@@ -38,37 +44,47 @@ export default class extends Controller {
   show() {
     if (this.isOpen) return
 
+    this.isOpen = true
+
     this.element.removeAttribute('aria-hidden')
 
-    this.appRoot.setAttribute('aria-hidden', 'true')
+    this.disableInertRoots()
 
-    window.addEventListener('keydown', this.handleKeyDown)
-
-    this.disableTabbableAppRootDescendants()
-
-    this.focusFirstTabbableDescendant()
+    this.disableInertRootsDescendants()
 
     disableBodyScroll(this.element, {
       reserveScrollBarGap: true,
     })
 
+    this.focusFirstTabbableDescendant()
+
     this.element.scrollTop = 0
 
-    this.isOpen = true
-
-    this.emit('show')
+    document.addEventListener('keydown', this.handleKeyDown)
 
     if (this.noTransition) {
       this.cleanUp()
     } else {
       this.element.addEventListener('transitionend', this.handleTransitionEnd)
     }
+
+    this.emit('show')
   }
 
-  disableTabbableAppRootDescendants() {
-    this.tabbableAppRootDescendants = tabbable(this.appRoot)
-    this.tabbableAppRootDescendants.forEach((el) => {
-      this.previousTabIndexes.set(el, el.getAttribute('tabindex'))
+  disableInertRoots() {
+    this.inertRoots.forEach((el) => {
+      this.originalAriaHiddenValues.set(el, el.getAttribute('aria-hidden'))
+
+      el.setAttribute('aria-hidden', 'true')
+    })
+  }
+
+  disableInertRootsDescendants() {
+    this.tabbableInertDescendants = this.inertRoots.flatMap((el) =>
+      tabbable(el)
+    )
+    this.tabbableInertDescendants.forEach((el) => {
+      this.originalTabIndexes.set(el, el.getAttribute('tabindex'))
 
       el.setAttribute('tabindex', '-1')
     })
@@ -95,45 +111,53 @@ export default class extends Controller {
   hide() {
     if (!this.isOpen) return
 
+    this.isOpen = false
+
     this.element.setAttribute('aria-hidden', 'true')
 
-    this.appRoot.removeAttribute('aria-hidden')
+    this.enableInertRoots()
 
-    window.removeEventListener('keydown', this.handleKeyDown)
-
-    this.restoreTabbableAppRootDescendants()
-
-    this.restoreFocus()
+    this.enableInertRootsDescendants()
 
     enableBodyScroll(this.element)
 
-    this.isOpen = false
+    this.previousActiveEl.focus()
 
-    this.emit('hide')
+    document.removeEventListener('keydown', this.handleKeyDown)
 
     if (this.noTransition) {
       this.cleanUp()
     } else {
       this.element.addEventListener('transitionend', this.handleTransitionEnd)
     }
+
+    this.emit('hide')
   }
 
-  restoreTabbableAppRootDescendants() {
-    this.tabbableAppRootDescendants.forEach((el) => {
-      const previousTabIndex = this.previousTabIndexes.get(el)
+  enableInertRoots() {
+    this.inertRoots.forEach((el) => {
+      const originalAriaHiddenValue = this.originalAriaHiddenValues.get(el)
 
-      if (previousTabIndex) {
-        el.setAttribute('tabindex', previousTabIndex)
+      if (originalAriaHiddenValue) {
+        el.setAttribute('aria-hidden', originalAriaHiddenValue)
+      } else {
+        el.removeAttribute('aria-hidden')
+      }
+    })
+  }
+
+  enableInertRootsDescendants() {
+    this.tabbableInertDescendants.forEach((el) => {
+      const originalTabIndex = this.originalTabIndexes.get(el)
+
+      if (originalTabIndex) {
+        el.setAttribute('tabindex', originalTabIndex)
       } else {
         el.removeAttribute('tabindex')
       }
 
-      this.previousTabIndexes.delete(el)
+      this.originalTabIndexes.delete(el)
     })
-  }
-
-  restoreFocus() {
-    this.previousActiveEl.focus()
   }
 
   cleanUp() {
