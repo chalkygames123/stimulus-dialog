@@ -36,9 +36,9 @@ export default class extends Controller {
 
     this.originalTabIndexes = new WeakMap()
 
-    this.isOpen = this.element.getAttribute('aria-hidden') !== 'true'
+    this.isOpen = false
 
-    if (this.isOpen) this.show()
+    if (this.element.getAttribute('aria-hidden') !== 'true') this.show()
   }
 
   show() {
