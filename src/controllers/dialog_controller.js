@@ -58,10 +58,12 @@ export default class extends Controller {
 
     this.element.scrollTop = 0
 
+    this.focusFirstTabbableDescendant()
+
     document.addEventListener('keydown', this.handleKeyDown)
 
     if (this.noTransition) {
-      this.cleanUp()
+      this.handleTransitionEnd()
     } else {
       this.element.addEventListener('transitionend', this.handleTransitionEnd)
     }
@@ -124,7 +126,7 @@ export default class extends Controller {
     document.removeEventListener('keydown', this.handleKeyDown)
 
     if (this.noTransition) {
-      this.cleanUp()
+      this.handleTransitionEnd()
     } else {
       this.element.addEventListener('transitionend', this.handleTransitionEnd)
     }
@@ -158,21 +160,6 @@ export default class extends Controller {
     })
   }
 
-  cleanUp() {
-    if (!this.noTransition) {
-      this.element.removeEventListener(
-        'transitionend',
-        this.handleTransitionEnd
-      )
-    }
-
-    if (this.isOpen) {
-      this.emit('shown')
-    } else {
-      this.emit('hidden')
-    }
-  }
-
   emit(type) {
     this.element.dispatchEvent(
       new CustomEvent(type, {
@@ -192,6 +179,17 @@ export default class extends Controller {
   handleTransitionEnd(e) {
     if (e && e.target !== this.element) return
 
-    this.cleanUp()
+    if (!this.noTransition) {
+      this.element.removeEventListener(
+        'transitionend',
+        this.handleTransitionEnd
+      )
+    }
+
+    if (this.isOpen) {
+      this.emit('shown')
+    } else {
+      this.emit('hidden')
+    }
   }
 }
