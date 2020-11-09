@@ -56,8 +56,6 @@ export default class extends Controller {
       reserveScrollBarGap: true,
     })
 
-    this.focusFirstTabbableDescendant()
-
     this.element.scrollTop = 0
 
     document.addEventListener('keydown', this.handleKeyDown)
