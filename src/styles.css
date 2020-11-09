@@ -54,7 +54,9 @@ p {
   transition: visibility 0s 0.3s, opacity 0.3s;
 }
 
-/* This extra element is required for scrolling to work correctly in Firefox and IE11 when there is padding */
+/**
+ * This extra element is required for scrolling to work correctly in Firefox and IE11 when there is padding
+ */
 .dialog__inner {
   position: relative;
   z-index: 0;
