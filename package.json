@@ -21,7 +21,6 @@
     "tabbable": "^5.1.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9",
     "@chalkygames123/stylelint-config": "^2.1.1",
     "eslint": "^7.15.0",
     "eslint-config-airbnb-base": "^14.2.1",
