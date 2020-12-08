@@ -1,8 +1,5 @@
 module.exports = {
-  extends: [
-    'stylelint-config-twbs-bootstrap/css',
-    'stylelint-prettier/recommended',
-  ],
+  extends: ['stylelint-config-twbs-bootstrap/css', 'stylelint-config-prettier'],
   rules: {
     'alpha-value-notation': 'number',
     'at-rule-empty-line-before': [
