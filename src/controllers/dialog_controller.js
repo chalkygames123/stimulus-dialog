@@ -3,6 +3,12 @@ import { Controller } from 'stimulus'
 import { tabbable } from 'tabbable'
 
 export default class extends Controller {
+  static get values() {
+    return {
+      inertRoots: String,
+    }
+  }
+
   get noTransition() {
     const computedStyle = getComputedStyle(this.element)
 
@@ -13,8 +19,8 @@ export default class extends Controller {
   }
 
   initialize() {
-    this.inertRoots = this.data.has('inertRoots')
-      ? [...document.querySelectorAll(this.data.get('inertRoots'))]
+    this.inertRoots = this.hasInertRootsValue
+      ? [...document.querySelectorAll(this.inertRootsValue)]
       : [...this.element.parentElement.children].filter(
           (el) => el !== this.element
         )
