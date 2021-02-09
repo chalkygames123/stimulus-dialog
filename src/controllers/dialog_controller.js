@@ -147,6 +147,8 @@ export default class extends Controller {
       } else {
         el.removeAttribute('aria-hidden')
       }
+
+      this.originalAriaHiddenValues.delete(el)
     })
   }
 
