@@ -21,7 +21,7 @@
     "tabbable": "5.1.4"
   },
   "devDependencies": {
-    "@chalkygames123/stylelint-config": "2.1.1",
+    "@chalkygames123/stylelint-config": "2.2.0",
     "eslint": "7.15.0",
     "eslint-config-airbnb-base": "14.2.1",
     "eslint-config-prettier": "7.0.0",
