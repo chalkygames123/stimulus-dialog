@@ -877,16 +877,15 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@chalkygames123/stylelint-config@2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@chalkygames123/stylelint-config/-/stylelint-config-2.1.1.tgz#4cffac1bcd68f175dfd56d68cb6588ca583711e7"
-  integrity sha512-Czfb/Uuu8inCNGtG4rcnfVEnWIcOfR0NxPO9pSVDB6f5T67hBVk3umCKazsDNMF1fXcrKkn2Hi5ZejiMMo+kqw==
+"@chalkygames123/stylelint-config@2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@chalkygames123/stylelint-config/-/stylelint-config-2.2.0.tgz#d2b2a27d4e01776bff1fab4b86a54248a09b7f05"
+  integrity sha512-HgPx7lQEwL49grs19DBjw9g8uEaBwLgaUcDt5ptLNDq4psRNILK0JIWjfc/2XWHFSCiYfzEUas8HFjNHaPK/rA==
   dependencies:
     stylelint-config-recess-order "^2.3.0"
     stylelint-config-recommended-scss "^4.2.0"
     stylelint-config-standard "^20.0.0"
-    stylelint-order "^4.1.0"
-    stylelint-scss "^3.18.0"
+    stylelint-scss "^3.19.0"
 
 "@eslint/eslintrc@^0.2.2":
   version "0.2.2"
@@ -6328,7 +6327,7 @@ stylelint-config-standard@^20.0.0:
   dependencies:
     stylelint-config-recommended "^3.0.0"
 
-stylelint-order@4.1.x, stylelint-order@^4.1.0:
+stylelint-order@4.1.x:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/stylelint-order/-/stylelint-order-4.1.0.tgz#692d05b7d0c235ac66fcf5ea1d9e5f08a76747f6"
   integrity sha512-sVTikaDvMqg2aJjh4r48jsdfmqLT+nqB1MOsaBnvM3OwLx4S+WXcsxsgk5w18h/OZoxZCxuyXMh61iBHcj9Qiw==
@@ -6337,10 +6336,10 @@ stylelint-order@4.1.x, stylelint-order@^4.1.0:
     postcss "^7.0.31"
     postcss-sorting "^5.0.1"
 
-stylelint-scss@^3.18.0:
-  version "3.18.0"
-  resolved "https://registry.yarnpkg.com/stylelint-scss/-/stylelint-scss-3.18.0.tgz#8f06371c223909bf3f62e839548af1badeed31e9"
-  integrity sha512-LD7+hv/6/ApNGt7+nR/50ft7cezKP2HM5rI8avIdGaUWre3xlHfV4jKO/DRZhscfuN+Ewy9FMhcTq0CcS0C/SA==
+stylelint-scss@^3.19.0:
+  version "3.19.0"
+  resolved "https://registry.yarnpkg.com/stylelint-scss/-/stylelint-scss-3.19.0.tgz#528006d5a4c5a0f1f4d709b02fd3f626ed66d742"
+  integrity sha512-Ic5bsmpS4wVucOw44doC1Yi9f5qbeVL4wPFiEOaUElgsOuLEN6Ofn/krKI8BeNL2gAn53Zu+IcVV4E345r6rBw==
   dependencies:
     lodash "^4.17.15"
     postcss-media-query-parser "^0.2.3"
