@@ -5,6 +5,7 @@ module.exports = {
   },
   extends: ['airbnb-base', 'plugin:eslint-comments/recommended', 'prettier'],
   rules: {
+    'import/no-default-export': ['error'],
     'import/order': [
       'error',
       {

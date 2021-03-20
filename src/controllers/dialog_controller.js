@@ -2,7 +2,7 @@ import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 import { Controller } from 'stimulus'
 import { tabbable } from 'tabbable'
 
-export default class extends Controller {
+export class DialogController extends Controller {
   static get values() {
     return {
       inertRoots: String,
