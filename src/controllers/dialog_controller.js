@@ -41,8 +41,6 @@ export class DialogController extends Controller {
     this.originalAriaHiddenValues = new WeakMap()
 
     this.originalTabIndexes = new WeakMap()
-
-    if (this.element.getAttribute('aria-hidden') !== 'true') this.show()
   }
 
   show() {
