@@ -35,6 +35,7 @@
     "stylelint-config-prettier": "8.0.2"
   },
   "browser": "dist/index.html",
+  "browserslist": "defaults",
   "volta": {
     "node": "15.11.0"
   }
