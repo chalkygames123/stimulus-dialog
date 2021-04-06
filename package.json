@@ -34,6 +34,7 @@
     "stylelint": "13.12.0",
     "stylelint-config-prettier": "8.0.2"
   },
+  "browser": "dist/index.html",
   "volta": {
     "node": "15.11.0"
   }
