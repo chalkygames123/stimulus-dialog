@@ -19,6 +19,13 @@ export class DialogController extends Controller {
   }
 
   initialize() {
+    this.element.setAttribute('aria-hidden', true)
+    this.element.setAttribute('aria-modal', true)
+
+    if (!this.element.hasAttribute('role')) {
+      this.element.setAttribute('role', 'dialog')
+    }
+
     this.inertRoots = this.hasInertRootsValue
       ? [...document.querySelectorAll(this.inertRootsValue)]
       : [...this.element.parentElement.children].filter(
