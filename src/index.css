@@ -76,6 +76,15 @@ p {
   border-radius: 25px;
 }
 
+.dialog[id='animated-dialog'] .dialog__document {
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  will-change: transform;
+}
+
+.dialog[id='animated-dialog'][aria-hidden='true'] .dialog__document {
+  transform: scale(0.85);
+}
+
 @media (min-width: 48em) {
   .dialog__document {
     width: 860px;
