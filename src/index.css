@@ -52,9 +52,7 @@ p {
 .dialog--animated[aria-hidden='true'] {
   display: flex;
   pointer-events: none;
-  visibility: hidden;
   opacity: 0;
-  transition: visibility 0s 0.3s, opacity 0.3s;
 }
 
 .dialog__backdrop {
