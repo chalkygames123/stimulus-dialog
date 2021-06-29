@@ -50,7 +50,7 @@ p {
 }
 
 .dialog--animated[aria-hidden='true'] {
-  display: flex;
+  display: flex; /* overrides the default style above */
   pointer-events: none;
   opacity: 0;
 }
