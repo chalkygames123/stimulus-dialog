@@ -1,6 +1,6 @@
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 import { Controller } from 'stimulus'
-import { tabbable } from 'tabbable'
+import { tabbable, isFocusable } from 'tabbable'
 
 export class DialogController extends Controller {
   static get values() {
@@ -104,7 +104,7 @@ export class DialogController extends Controller {
 
     const autoFocusDescendant = this.element.querySelector('[autofocus]')
 
-    if (autoFocusDescendant) {
+    if (autoFocusDescendant && isFocusable(autoFocusDescendant)) {
       autoFocusDescendant.focus()
     } else {
       const tabbableDialogDescendants = tabbable(this.element)
