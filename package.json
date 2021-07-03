@@ -23,12 +23,12 @@
   "devDependencies": {
     "@chalkygames123/eslint-config": "2.0.0",
     "@chalkygames123/stylelint-config": "4.0.1",
-    "eslint": "7.28.0",
+    "eslint": "7.30.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-eslint-comments": "3.2.0",
     "npm-run-all": "4.1.5",
-    "parcel": "2.0.0-nightly.708",
-    "prettier": "2.3.1",
+    "parcel": "2.0.0-nightly.750",
+    "prettier": "2.3.2",
     "prettier-plugin-package": "1.3.0",
     "stylelint": "13.13.1",
     "stylelint-config-prettier": "8.0.2"
