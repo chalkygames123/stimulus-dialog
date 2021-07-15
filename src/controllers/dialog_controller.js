@@ -19,8 +19,8 @@ export class DialogController extends Controller {
   }
 
   initialize() {
-    this.element.setAttribute('aria-hidden', true)
-    this.element.setAttribute('aria-modal', true)
+    this.element.setAttribute('aria-hidden', 'true')
+    this.element.setAttribute('aria-modal', 'true')
 
     if (!this.element.hasAttribute('role')) {
       this.element.setAttribute('role', 'dialog')
