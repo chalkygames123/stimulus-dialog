@@ -199,7 +199,12 @@ export class DialogController extends Controller {
   }
 
   handleKeyDown(e) {
-    if (e.key === 'Escape' || e.key === 'Esc') this.hide()
+    if (
+      e.key === 'Escape' ||
+      (e.key === 'Esc' && this.element.getAttribute('role') !== 'alertdialog')
+    ) {
+      this.hide()
+    }
   }
 
   handleTransitionEnd(e) {
