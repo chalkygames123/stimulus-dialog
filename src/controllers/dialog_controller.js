@@ -13,12 +13,13 @@ export class DialogController extends Controller {
     const computedStyle = getComputedStyle(this.element)
 
     return (
-      computedStyle.transitionDuration === '0s' &&
-      computedStyle.transitionDelay === '0s'
+      (computedStyle.transitionDuration === '0s' &&
+        computedStyle.transitionDelay === '0s') ||
+      computedStyle.length === 0
     )
   }
 
-  initialize() {
+  connect() {
     this.element.setAttribute('aria-hidden', 'true')
     this.element.setAttribute('aria-modal', 'true')
 
@@ -48,6 +49,16 @@ export class DialogController extends Controller {
     this.originalAriaHiddenValues = new WeakMap()
 
     this.originalTabIndexes = new WeakMap()
+  }
+
+  disconnect() {
+    this.openers.forEach((el) => {
+      el.removeEventListener('click', this.handleOpenerClick)
+    })
+
+    if (this.isOpen) {
+      this.hide()
+    }
   }
 
   show() {
