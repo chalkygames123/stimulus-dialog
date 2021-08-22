@@ -11,6 +11,8 @@ module.exports = {
 		{
 			files: 'src/**',
 			extends: ['xo/browser', 'prettier'],
+			parser: '@babel/eslint-parser',
+			plugins: ['@babel'],
 		},
 	],
 }
