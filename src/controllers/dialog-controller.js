@@ -191,8 +191,8 @@ export default class extends Controller {
 
 	handleKeyDown(e) {
 		if (
-			e.key === 'Escape' ||
-			(e.key === 'Esc' && this.element.getAttribute('role') !== 'alertdialog')
+			(e.key === 'Escape' || e.key === 'Esc') &&
+			this.element.getAttribute('role') !== 'alertdialog'
 		) {
 			this.hide()
 		}
