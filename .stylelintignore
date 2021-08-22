@@ -1,1 +1,4 @@
 dist
+
+# https://github.com/stylelint/stylelint/issues/5432
+*.cjs
