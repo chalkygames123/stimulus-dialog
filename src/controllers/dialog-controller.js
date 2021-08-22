@@ -190,6 +190,8 @@ export default class extends Controller {
 	}
 
 	handleKeyDown(e) {
+		if (e.isComposing) return
+
 		if (
 			(e.key === 'Escape' || e.key === 'Esc') &&
 			this.element.getAttribute('role') !== 'alertdialog'
