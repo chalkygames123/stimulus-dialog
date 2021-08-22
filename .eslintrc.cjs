@@ -6,6 +6,9 @@ module.exports = {
 	},
 	overrides: [
 		{
+			files: '**/*.cjs',
+		},
+		{
 			files: 'src/**',
 			extends: ['xo/browser', 'prettier'],
 		},
