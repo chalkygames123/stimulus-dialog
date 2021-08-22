@@ -27,7 +27,7 @@ export default class extends Controller {
 
 	handleKeyDown = this.handleKeyDown.bind(this)
 
-	handleTransitionEnd = this.handleTransitionEnd.bind(this)
+	handleElementTransitionEnd = this.handleElementTransitionEnd.bind(this)
 
 	get noTransition() {
 		const computedStyle = getComputedStyle(this.element)
@@ -57,9 +57,7 @@ export default class extends Controller {
 			el.removeEventListener('click', this.handleOpenerClick)
 		}
 
-		if (this.isOpen) {
-			this.hide()
-		}
+		if (this.isOpen) this.hide()
 	}
 
 	show() {
@@ -84,7 +82,10 @@ export default class extends Controller {
 		if (this.noTransition) {
 			this.cleanUp()
 		} else {
-			this.element.addEventListener('transitionend', this.handleTransitionEnd)
+			this.element.addEventListener(
+				'transitionend',
+				this.handleElementTransitionEnd
+			)
 		}
 
 		this.emit('show')
@@ -138,7 +139,10 @@ export default class extends Controller {
 		if (this.noTransition) {
 			this.cleanUp()
 		} else {
-			this.element.addEventListener('transitionend', this.handleTransitionEnd)
+			this.element.addEventListener(
+				'transitionend',
+				this.handleElementTransitionEnd
+			)
 		}
 
 		this.emit('hide')
@@ -162,7 +166,7 @@ export default class extends Controller {
 		if (!this.noTransition) {
 			this.element.removeEventListener(
 				'transitionend',
-				this.handleTransitionEnd
+				this.handleElementTransitionEnd
 			)
 		}
 
@@ -194,7 +198,7 @@ export default class extends Controller {
 		}
 	}
 
-	handleTransitionEnd(e) {
+	handleElementTransitionEnd(e) {
 		if (e.target !== this.element) return
 
 		this.cleanUp()
