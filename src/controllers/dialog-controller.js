@@ -47,8 +47,6 @@ export default class extends Controller {
 
 		this.handleTransitionEnd = this.handleTransitionEnd.bind(this)
 
-		this.originalAriaHiddenValues = new WeakMap()
-
 		this.originalTabIndexes = new WeakMap()
 	}
 
@@ -69,8 +67,6 @@ export default class extends Controller {
 
 		this.element.removeAttribute('aria-hidden')
 
-		this.disableInertRoots()
-
 		this.disableInertRootsDescendants()
 
 		disableBodyScroll(this.element, {
@@ -90,14 +86,6 @@ export default class extends Controller {
 		}
 
 		this.emit('show')
-	}
-
-	disableInertRoots() {
-		for (const el of this.inertRoots) {
-			this.originalAriaHiddenValues.set(el, el.getAttribute('aria-hidden'))
-
-			el.setAttribute('aria-hidden', 'true')
-		}
 	}
 
 	disableInertRootsDescendants() {
@@ -137,8 +125,6 @@ export default class extends Controller {
 
 		this.element.setAttribute('aria-hidden', 'true')
 
-		this.enableInertRoots()
-
 		this.enableInertRootsDescendants()
 
 		enableBodyScroll(this.element)
@@ -154,20 +140,6 @@ export default class extends Controller {
 		}
 
 		this.emit('hide')
-	}
-
-	enableInertRoots() {
-		for (const el of this.inertRoots) {
-			const originalAriaHiddenValue = this.originalAriaHiddenValues.get(el)
-
-			if (originalAriaHiddenValue) {
-				el.setAttribute('aria-hidden', originalAriaHiddenValue)
-			} else {
-				el.removeAttribute('aria-hidden')
-			}
-
-			this.originalAriaHiddenValues.delete(el)
-		}
 	}
 
 	enableInertRootsDescendants() {
