@@ -5,7 +5,7 @@ module.exports = {
     {
       files: '*.html',
       options: {
-        printWidth: Infinity,
+        printWidth: Number.POSITIVE_INFINITY,
       },
     },
   ],

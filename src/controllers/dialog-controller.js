@@ -38,9 +38,10 @@ export default class extends Controller {
     this.openers = document.querySelectorAll(
       `[data-dialog-show="${this.element.id}"]`
     )
-    this.openers.forEach((el) => {
+
+    for (const el of this.openers) {
       el.addEventListener('click', this.handleOpenerClick)
-    })
+    }
 
     this.handleKeyDown = this.handleKeyDown.bind(this)
 
@@ -52,9 +53,9 @@ export default class extends Controller {
   }
 
   disconnect() {
-    this.openers.forEach((el) => {
+    for (const el of this.openers) {
       el.removeEventListener('click', this.handleOpenerClick)
-    })
+    }
 
     if (this.isOpen) {
       this.hide()
@@ -92,22 +93,23 @@ export default class extends Controller {
   }
 
   disableInertRoots() {
-    this.inertRoots.forEach((el) => {
+    for (const el of this.inertRoots) {
       this.originalAriaHiddenValues.set(el, el.getAttribute('aria-hidden'))
 
       el.setAttribute('aria-hidden', 'true')
-    })
+    }
   }
 
   disableInertRootsDescendants() {
     this.tabbableInertDescendants = this.inertRoots.flatMap((el) =>
       tabbable(el)
     )
-    this.tabbableInertDescendants.forEach((el) => {
+
+    for (const el of this.tabbableInertDescendants) {
       this.originalTabIndexes.set(el, el.getAttribute('tabindex'))
 
       el.setAttribute('tabindex', '-1')
-    })
+    }
   }
 
   focusFirstTabbableDescendant() {
@@ -120,7 +122,7 @@ export default class extends Controller {
     } else {
       const tabbableDialogDescendants = tabbable(this.element)
 
-      if (tabbableDialogDescendants.length) {
+      if (tabbableDialogDescendants.length > 0) {
         tabbableDialogDescendants[0].focus()
       } else {
         this.element.focus()
@@ -155,7 +157,7 @@ export default class extends Controller {
   }
 
   enableInertRoots() {
-    this.inertRoots.forEach((el) => {
+    for (const el of this.inertRoots) {
       const originalAriaHiddenValue = this.originalAriaHiddenValues.get(el)
 
       if (originalAriaHiddenValue) {
@@ -165,11 +167,11 @@ export default class extends Controller {
       }
 
       this.originalAriaHiddenValues.delete(el)
-    })
+    }
   }
 
   enableInertRootsDescendants() {
-    this.tabbableInertDescendants.forEach((el) => {
+    for (const el of this.tabbableInertDescendants) {
       const originalTabIndex = this.originalTabIndexes.get(el)
 
       if (originalTabIndex) {
@@ -179,7 +181,7 @@ export default class extends Controller {
       }
 
       this.originalTabIndexes.delete(el)
-    })
+    }
   }
 
   cleanUp() {
