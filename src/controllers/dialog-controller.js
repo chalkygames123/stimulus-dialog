@@ -3,11 +3,31 @@ import { Controller } from 'stimulus'
 import { tabbable, isFocusable } from 'tabbable'
 
 export default class extends Controller {
-	static get values() {
-		return {
-			inertRoots: String,
-		}
+	static values = {
+		inertRoots: String,
 	}
+
+	isOpen = false
+
+	openers = document.querySelectorAll(`[data-dialog-show="${this.element.id}"]`)
+
+	inertRoots = this.hasInertRootsValue
+		? [...document.querySelectorAll(this.inertRootsValue)]
+		: [...this.element.parentElement.children].filter(
+				(el) => el !== this.element
+		  )
+
+	tabbableInertDescendants = []
+
+	originalTabIndexes = new WeakMap()
+
+	previousActiveEl = undefined
+
+	handleOpenerClick = this.handleOpenerClick.bind(this)
+
+	handleKeyDown = this.handleKeyDown.bind(this)
+
+	handleTransitionEnd = this.handleTransitionEnd.bind(this)
 
 	get noTransition() {
 		const computedStyle = getComputedStyle(this.element)
@@ -27,27 +47,9 @@ export default class extends Controller {
 			this.element.setAttribute('role', 'dialog')
 		}
 
-		this.inertRoots = this.hasInertRootsValue
-			? [...document.querySelectorAll(this.inertRootsValue)]
-			: [...this.element.parentElement.children].filter(
-					(el) => el !== this.element
-			  )
-
-		this.handleOpenerClick = this.handleOpenerClick.bind(this)
-
-		this.openers = document.querySelectorAll(
-			`[data-dialog-show="${this.element.id}"]`
-		)
-
 		for (const el of this.openers) {
 			el.addEventListener('click', this.handleOpenerClick)
 		}
-
-		this.handleKeyDown = this.handleKeyDown.bind(this)
-
-		this.handleTransitionEnd = this.handleTransitionEnd.bind(this)
-
-		this.originalTabIndexes = new WeakMap()
 	}
 
 	disconnect() {
