@@ -20,10 +20,6 @@ p {
 	margin-top: 1em;
 }
 
-[aria-hidden='true'] {
-	user-select: none;
-}
-
 .ellipsis {
 	line-height: 5;
 }
