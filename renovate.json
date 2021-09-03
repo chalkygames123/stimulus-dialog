@@ -1,10 +1,4 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"extends": ["github>chalkygames123/renovate-config"],
-	"packageRules": [
-		{
-			"matchPackageNames": ["parcel"],
-			"followTag": "next"
-		}
-	]
+	"extends": ["github>chalkygames123/renovate-config"]
 }
