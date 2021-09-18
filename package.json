@@ -2,7 +2,7 @@
 	"private": true,
 	"type": "module",
 	"engines": {
-		"node": "16.7.0"
+		"node": "16.9.1"
 	},
 	"scripts": {
 		"build": "parcel build src/index.html",
@@ -38,6 +38,6 @@
 	},
 	"browserslist": "defaults",
 	"volta": {
-		"node": "16.7.0"
+		"node": "16.9.1"
 	}
 }
