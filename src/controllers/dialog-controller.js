@@ -88,7 +88,7 @@ export default class Dialog extends Controller {
 			)
 		}
 
-		this.emit('show')
+		this.dispatch('show')
 	}
 
 	disableInertRootsDescendants() {
@@ -145,7 +145,7 @@ export default class Dialog extends Controller {
 			)
 		}
 
-		this.emit('hide')
+		this.dispatch('hide')
 	}
 
 	enableInertRootsDescendants() {
@@ -171,18 +171,10 @@ export default class Dialog extends Controller {
 		}
 
 		if (this.isOpen) {
-			this.emit('shown')
+			this.dispatch('shown')
 		} else {
-			this.emit('hidden')
+			this.dispatch('hidden')
 		}
-	}
-
-	emit(type) {
-		this.element.dispatchEvent(
-			new CustomEvent(type, {
-				bubbles: true,
-			})
-		)
 	}
 
 	handleOpenerClick() {
