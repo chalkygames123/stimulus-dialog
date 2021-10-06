@@ -1,6 +1,6 @@
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { Controller } from '@hotwired/stimulus';
-import { tabbable, isFocusable } from 'tabbable';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import { isFocusable, tabbable } from 'tabbable';
 
 export default class Dialog extends Controller {
 	static values = {
