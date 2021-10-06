@@ -23,12 +23,6 @@ export default class Dialog extends Controller {
 
 	previousActiveEl = undefined
 
-	handleOpenerClick = this.handleOpenerClick.bind(this)
-
-	handleKeyDown = this.handleKeyDown.bind(this)
-
-	handleElementTransitionEnd = this.handleElementTransitionEnd.bind(this)
-
 	get noTransition() {
 		const computedStyle = getComputedStyle(this.element)
 
@@ -177,11 +171,11 @@ export default class Dialog extends Controller {
 		}
 	}
 
-	handleOpenerClick() {
+	handleOpenerClick = () => {
 		this.show()
 	}
 
-	handleKeyDown(e) {
+	handleKeyDown = (e) => {
 		if (e.isComposing) return
 
 		if (
@@ -192,7 +186,7 @@ export default class Dialog extends Controller {
 		}
 	}
 
-	handleElementTransitionEnd(e) {
+	handleElementTransitionEnd = (e) => {
 		if (e.target !== this.element) return
 
 		this.cleanUp()
