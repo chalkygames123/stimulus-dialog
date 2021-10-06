@@ -1,8 +1,8 @@
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
-import { Controller } from 'stimulus'
+import { Controller } from '@hotwired/stimulus'
 import { tabbable, isFocusable } from 'tabbable'
 
-export default class extends Controller {
+export default class Dialog extends Controller {
 	static values = {
 		inertRoots: String,
 	}
