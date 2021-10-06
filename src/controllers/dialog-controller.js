@@ -38,6 +38,7 @@ export default class Dialog extends Controller {
 	connect() {
 		this.element.setAttribute('aria-hidden', 'true');
 		this.element.setAttribute('aria-modal', 'true');
+		this.element.setAttribute('tabindex', '-1');
 
 		if (!this.element.hasAttribute('role')) {
 			this.element.setAttribute('role', 'dialog');
@@ -71,7 +72,7 @@ export default class Dialog extends Controller {
 
 		this.element.scrollTop = 0;
 
-		this.focusFirstTabbableDescendant();
+		this.focusDialog();
 
 		document.addEventListener('keydown', this.handleKeyDown);
 
@@ -99,7 +100,7 @@ export default class Dialog extends Controller {
 		}
 	}
 
-	focusFirstTabbableDescendant() {
+	focusDialog() {
 		this.previousActiveEl = document.activeElement;
 
 		const autoFocusDescendant = this.element.querySelector('[autofocus]');
@@ -107,13 +108,7 @@ export default class Dialog extends Controller {
 		if (autoFocusDescendant && isFocusable(autoFocusDescendant)) {
 			autoFocusDescendant.focus();
 		} else {
-			const tabbableDialogDescendants = tabbable(this.element);
-
-			if (tabbableDialogDescendants.length > 0) {
-				tabbableDialogDescendants[0].focus();
-			} else {
-				this.element.focus();
-			}
+			this.element.focus();
 		}
 	}
 
