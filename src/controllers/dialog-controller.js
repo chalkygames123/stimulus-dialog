@@ -1,6 +1,6 @@
 import { Controller } from '@hotwired/stimulus';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
-import { isFocusable, tabbable } from 'tabbable';
+import { tabbable } from 'tabbable';
 
 export default class Dialog extends Controller {
 	static values = {
@@ -103,13 +103,7 @@ export default class Dialog extends Controller {
 	focusDialog() {
 		this.previousActiveEl = document.activeElement;
 
-		const autoFocusDescendant = this.element.querySelector('[autofocus]');
-
-		if (autoFocusDescendant && isFocusable(autoFocusDescendant)) {
-			autoFocusDescendant.focus();
-		} else {
-			this.element.focus();
-		}
+		(this.element.querySelector('[autofocus]') || this.element).focus();
 	}
 
 	hide() {
