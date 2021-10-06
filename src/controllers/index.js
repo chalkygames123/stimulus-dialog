@@ -1,1 +1,1 @@
-export { default as DialogController } from './dialog-controller'
+export { default as DialogController } from './dialog-controller';

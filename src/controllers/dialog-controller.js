@@ -1,158 +1,160 @@
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
-import { Controller } from '@hotwired/stimulus'
-import { tabbable, isFocusable } from 'tabbable'
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import { Controller } from '@hotwired/stimulus';
+import { tabbable, isFocusable } from 'tabbable';
 
 export default class Dialog extends Controller {
 	static values = {
 		inertRoots: String,
-	}
+	};
 
-	isOpen = false
+	isOpen = false;
 
-	openers = document.querySelectorAll(`[data-dialog-show="${this.element.id}"]`)
+	openers = document.querySelectorAll(
+		`[data-dialog-show="${this.element.id}"]`,
+	);
 
 	inertRoots = this.hasInertRootsValue
 		? [...document.querySelectorAll(this.inertRootsValue)]
 		: [...this.element.parentElement.children].filter(
-				(el) => el !== this.element
-		  )
+				(el) => el !== this.element,
+		  );
 
-	tabbableInertDescendants = []
+	tabbableInertDescendants = [];
 
-	originalTabIndexes = new WeakMap()
+	originalTabIndexes = new WeakMap();
 
-	previousActiveEl = undefined
+	previousActiveEl = undefined;
 
 	get noTransition() {
-		const computedStyle = getComputedStyle(this.element)
+		const computedStyle = getComputedStyle(this.element);
 
 		return (
 			(computedStyle.transitionDuration === '0s' &&
 				computedStyle.transitionDelay === '0s') ||
 			computedStyle.length === 0
-		)
+		);
 	}
 
 	connect() {
-		this.element.setAttribute('aria-hidden', 'true')
-		this.element.setAttribute('aria-modal', 'true')
+		this.element.setAttribute('aria-hidden', 'true');
+		this.element.setAttribute('aria-modal', 'true');
 
 		if (!this.element.hasAttribute('role')) {
-			this.element.setAttribute('role', 'dialog')
+			this.element.setAttribute('role', 'dialog');
 		}
 
 		for (const el of this.openers) {
-			el.addEventListener('click', this.handleOpenerClick)
+			el.addEventListener('click', this.handleOpenerClick);
 		}
 	}
 
 	disconnect() {
 		for (const el of this.openers) {
-			el.removeEventListener('click', this.handleOpenerClick)
+			el.removeEventListener('click', this.handleOpenerClick);
 		}
 
-		if (this.isOpen) this.hide()
+		if (this.isOpen) this.hide();
 	}
 
 	show() {
-		if (this.isOpen) return
+		if (this.isOpen) return;
 
-		this.isOpen = true
+		this.isOpen = true;
 
-		this.element.removeAttribute('aria-hidden')
+		this.element.removeAttribute('aria-hidden');
 
-		this.disableInertRootsDescendants()
+		this.disableInertRootsDescendants();
 
 		disableBodyScroll(this.element, {
 			reserveScrollBarGap: true,
-		})
+		});
 
-		this.element.scrollTop = 0
+		this.element.scrollTop = 0;
 
-		this.focusFirstTabbableDescendant()
+		this.focusFirstTabbableDescendant();
 
-		document.addEventListener('keydown', this.handleKeyDown)
+		document.addEventListener('keydown', this.handleKeyDown);
 
 		if (this.noTransition) {
-			this.cleanUp()
+			this.cleanUp();
 		} else {
 			this.element.addEventListener(
 				'transitionend',
-				this.handleElementTransitionEnd
-			)
+				this.handleElementTransitionEnd,
+			);
 		}
 
-		this.dispatch('show')
+		this.dispatch('show');
 	}
 
 	disableInertRootsDescendants() {
 		this.tabbableInertDescendants = this.inertRoots.flatMap((el) =>
-			tabbable(el)
-		)
+			tabbable(el),
+		);
 
 		for (const el of this.tabbableInertDescendants) {
-			this.originalTabIndexes.set(el, el.getAttribute('tabindex'))
+			this.originalTabIndexes.set(el, el.getAttribute('tabindex'));
 
-			el.setAttribute('tabindex', '-1')
+			el.setAttribute('tabindex', '-1');
 		}
 	}
 
 	focusFirstTabbableDescendant() {
-		this.previousActiveEl = document.activeElement
+		this.previousActiveEl = document.activeElement;
 
-		const autoFocusDescendant = this.element.querySelector('[autofocus]')
+		const autoFocusDescendant = this.element.querySelector('[autofocus]');
 
 		if (autoFocusDescendant && isFocusable(autoFocusDescendant)) {
-			autoFocusDescendant.focus()
+			autoFocusDescendant.focus();
 		} else {
-			const tabbableDialogDescendants = tabbable(this.element)
+			const tabbableDialogDescendants = tabbable(this.element);
 
 			if (tabbableDialogDescendants.length > 0) {
-				tabbableDialogDescendants[0].focus()
+				tabbableDialogDescendants[0].focus();
 			} else {
-				this.element.focus()
+				this.element.focus();
 			}
 		}
 	}
 
 	hide() {
-		if (!this.isOpen) return
+		if (!this.isOpen) return;
 
-		this.isOpen = false
+		this.isOpen = false;
 
-		this.element.setAttribute('aria-hidden', 'true')
+		this.element.setAttribute('aria-hidden', 'true');
 
-		this.enableInertRootsDescendants()
+		this.enableInertRootsDescendants();
 
-		enableBodyScroll(this.element)
+		enableBodyScroll(this.element);
 
-		this.previousActiveEl.focus()
+		this.previousActiveEl.focus();
 
-		document.removeEventListener('keydown', this.handleKeyDown)
+		document.removeEventListener('keydown', this.handleKeyDown);
 
 		if (this.noTransition) {
-			this.cleanUp()
+			this.cleanUp();
 		} else {
 			this.element.addEventListener(
 				'transitionend',
-				this.handleElementTransitionEnd
-			)
+				this.handleElementTransitionEnd,
+			);
 		}
 
-		this.dispatch('hide')
+		this.dispatch('hide');
 	}
 
 	enableInertRootsDescendants() {
 		for (const el of this.tabbableInertDescendants) {
-			const originalTabIndex = this.originalTabIndexes.get(el)
+			const originalTabIndex = this.originalTabIndexes.get(el);
 
 			if (originalTabIndex) {
-				el.setAttribute('tabindex', originalTabIndex)
+				el.setAttribute('tabindex', originalTabIndex);
 			} else {
-				el.removeAttribute('tabindex')
+				el.removeAttribute('tabindex');
 			}
 
-			this.originalTabIndexes.delete(el)
+			this.originalTabIndexes.delete(el);
 		}
 	}
 
@@ -160,35 +162,35 @@ export default class Dialog extends Controller {
 		if (!this.noTransition) {
 			this.element.removeEventListener(
 				'transitionend',
-				this.handleElementTransitionEnd
-			)
+				this.handleElementTransitionEnd,
+			);
 		}
 
 		if (this.isOpen) {
-			this.dispatch('shown')
+			this.dispatch('shown');
 		} else {
-			this.dispatch('hidden')
+			this.dispatch('hidden');
 		}
 	}
 
 	handleOpenerClick = () => {
-		this.show()
-	}
+		this.show();
+	};
 
 	handleKeyDown = (e) => {
-		if (e.isComposing) return
+		if (e.isComposing) return;
 
 		if (
 			(e.key === 'Escape' || e.key === 'Esc') &&
 			this.element.getAttribute('role') !== 'alertdialog'
 		) {
-			this.hide()
+			this.hide();
 		}
-	}
+	};
 
 	handleElementTransitionEnd = (e) => {
-		if (e.target !== this.element) return
+		if (e.target !== this.element) return;
 
-		this.cleanUp()
-	}
+		this.cleanUp();
+	};
 }
