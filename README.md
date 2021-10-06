@@ -13,4 +13,10 @@ https://stimulus-dialog-chalkygames123.netlify.app/
 
 ## Installation
 
-Copy [src/controllers/dialog-controller.js](src/controllers/dialog-controller.js) to your project.
+1. Copy [src/controllers/dialog-controller.js](src/controllers/dialog-controller.js) to your project.
+
+2. Install dependencies (if you haven't already):
+
+```shell
+$ npm install @hotwired/stimulus body-scroll-lock tabbable
+```
