@@ -27,11 +27,11 @@ export default class Dialog extends Controller {
 
 	get noTransition() {
 		const computedStyle = getComputedStyle(this.element);
+		const durations = computedStyle.transitionDuration.split(', ');
+		const delays = computedStyle.transitionDelay.split(', ');
 
 		return (
-			(computedStyle.transitionDuration === '0s' &&
-				computedStyle.transitionDelay === '0s') ||
-			computedStyle.length === 0
+			durations.every((el) => el === '0s') && delays.every((el) => el === '0s')
 		);
 	}
 
