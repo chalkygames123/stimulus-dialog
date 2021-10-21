@@ -6,15 +6,17 @@
 	},
 	"scripts": {
 		"build": "parcel build src/index.html",
+		"check": "run-p check:* --continue-on-error",
+		"check:prettier": "prettier . --check",
 		"dev": "parcel src/index.html --open",
 		"fix": "run-p fix:* --continue-on-error",
-		"fix:scripts": "npm run lint:scripts -- --fix",
-		"fix:styles": "npm run lint:styles -- --fix; npm run lint:styles -- --fix",
-		"format": "npm run format-check -- --write",
-		"format-check": "prettier . --check",
+		"fix:eslint": "npm run lint:eslint -- --fix",
+		"fix:stylelint": "npm run lint:stylelint -- --fix; npm run lint:stylelint -- --fix",
+		"format": "run-p format:* --continue-on-error",
+		"format:prettier": "npm run check:prettier -- --write",
 		"lint": "run-p lint:* --continue-on-error",
-		"lint:scripts": "eslint .",
-		"lint:styles": "stylelint \"**/*.css\""
+		"lint:eslint": "eslint .",
+		"lint:stylelint": "stylelint \"**/*.css\""
 	},
 	"dependencies": {
 		"@hotwired/stimulus": "3.0.1",
