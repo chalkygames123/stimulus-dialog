@@ -2,6 +2,7 @@ module.exports = {
 	root: true,
 	extends: ['xo', 'plugin:unicorn/recommended', 'prettier'],
 	rules: {
+		'class-methods-use-this': 'error',
 		'unicorn/prevent-abbreviations': 'off',
 	},
 	overrides: [
