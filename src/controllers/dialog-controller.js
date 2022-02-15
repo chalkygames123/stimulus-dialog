@@ -21,7 +21,7 @@ export default class Dialog extends Controller {
 
 	tabbableInertDescendants = [];
 
-	originalTabIndexes = new WeakMap();
+	originalTabIndices = new WeakMap();
 
 	previousActiveEl = undefined;
 
@@ -94,7 +94,7 @@ export default class Dialog extends Controller {
 		);
 
 		for (const el of this.tabbableInertDescendants) {
-			this.originalTabIndexes.set(el, el.getAttribute('tabindex'));
+			this.originalTabIndices.set(el, el.getAttribute('tabindex'));
 
 			el.setAttribute('tabindex', '-1');
 		}
@@ -135,7 +135,7 @@ export default class Dialog extends Controller {
 
 	enableInertRootsDescendants() {
 		for (const el of this.tabbableInertDescendants) {
-			const originalTabIndex = this.originalTabIndexes.get(el);
+			const originalTabIndex = this.originalTabIndices.get(el);
 
 			if (originalTabIndex) {
 				el.setAttribute('tabindex', originalTabIndex);
@@ -143,7 +143,7 @@ export default class Dialog extends Controller {
 				el.removeAttribute('tabindex');
 			}
 
-			this.originalTabIndexes.delete(el);
+			this.originalTabIndices.delete(el);
 		}
 	}
 
