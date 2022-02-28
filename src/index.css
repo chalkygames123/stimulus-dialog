@@ -32,7 +32,6 @@ p {
 	left: 0;
 	z-index: 100;
 	display: flex;
-	flex-direction: column; /* for IE11 */
 	padding: 30px;
 	overflow: auto;
 }
