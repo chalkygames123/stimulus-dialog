@@ -20,3 +20,7 @@ https://stimulus-dialog-chalkygames123.netlify.app/
 ```shell
 $ npm install @hotwired/stimulus body-scroll-lock tabbable
 ```
+
+## Browser Support
+
+This implementation is intended to support only the modern browsers listed with the `defaults` query in Browserslist. To support IE11 as well, please consult the [`example/support-ie11`](https://github.com/chalkygames123/stimulus-dialog/compare/example/support-ie11) branch. Its demo is available here: https://example-support-ie11--stimulus-dialog-chalkygames123.netlify.app/
