@@ -1,4 +1,4 @@
-import { Application } from '@hotwired/stimulus';
+import { Application } from 'stimulus';
 
 import { DialogController } from './controllers';
 

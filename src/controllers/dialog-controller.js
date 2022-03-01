@@ -1,4 +1,4 @@
-import { Controller } from '@hotwired/stimulus';
+import { Controller } from 'stimulus';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { tabbable } from 'tabbable';
 
@@ -160,6 +160,14 @@ export default class Dialog extends Controller {
 		} else {
 			this.dispatch('hidden');
 		}
+	}
+
+	dispatch(type) {
+		this.element.dispatchEvent(
+			new CustomEvent(type, {
+				bubbles: true,
+			}),
+		);
 	}
 
 	handleOpenerClick = () => {
