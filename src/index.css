@@ -26,9 +26,13 @@ p {
 
 .dialog {
 	position: fixed;
-	inset: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
 	z-index: 100;
 	display: flex;
+	flex-direction: column;
 	padding: 30px;
 	overflow: auto;
 }
@@ -51,7 +55,10 @@ p {
 
 .dialog__backdrop {
 	position: fixed;
-	inset: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
 	z-index: -1;
 	background-color: rgb(0 0 0 / 0.3);
 }
