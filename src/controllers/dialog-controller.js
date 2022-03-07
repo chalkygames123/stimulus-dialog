@@ -44,15 +44,17 @@ export default class Dialog extends Controller {
 			this.element.setAttribute('role', 'dialog');
 		}
 
-		for (const el of this.openers) {
+		// eslint-disable-next-line unicorn/no-array-for-each
+		this.openers.forEach((el) => {
 			el.addEventListener('click', this.handleOpenerClick);
-		}
+		});
 	}
 
 	disconnect() {
-		for (const el of this.openers) {
+		// eslint-disable-next-line unicorn/no-array-for-each
+		this.openers.forEach((el) => {
 			el.removeEventListener('click', this.handleOpenerClick);
-		}
+		});
 
 		if (this.isOpen) this.hide();
 	}
@@ -93,11 +95,12 @@ export default class Dialog extends Controller {
 			tabbable(el),
 		);
 
-		for (const el of this.tabbableInertDescendants) {
+		// eslint-disable-next-line unicorn/no-array-for-each
+		this.tabbableInertDescendants.forEach((el) => {
 			this.originalTabIndices.set(el, el.getAttribute('tabindex'));
 
 			el.setAttribute('tabindex', '-1');
-		}
+		});
 	}
 
 	focusDialog() {
@@ -134,7 +137,8 @@ export default class Dialog extends Controller {
 	}
 
 	enableInertRootsDescendants() {
-		for (const el of this.tabbableInertDescendants) {
+		// eslint-disable-next-line unicorn/no-array-for-each
+		this.tabbableInertDescendants.forEach((el) => {
 			const originalTabIndex = this.originalTabIndices.get(el);
 
 			if (originalTabIndex) {
@@ -144,7 +148,7 @@ export default class Dialog extends Controller {
 			}
 
 			this.originalTabIndices.delete(el);
-		}
+		});
 	}
 
 	cleanUp() {
