@@ -22,7 +22,7 @@
 	"dependencies": {
 		"@hotwired/stimulus": "3.0.1",
 		"body-scroll-lock": "3.1.5",
-		"tabbable": "5.2.1"
+		"tabbable": "5.3.3"
 	},
 	"devDependencies": {
 		"@babel/eslint-parser": "7.18.2",
