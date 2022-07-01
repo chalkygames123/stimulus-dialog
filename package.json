@@ -27,7 +27,7 @@
 	"devDependencies": {
 		"@babel/eslint-parser": "7.18.2",
 		"@babel/eslint-plugin": "7.17.7",
-		"@chalkygames123/stylelint-config": "13.0.1",
+		"@chalkygames123/stylelint-config": "16.0.0",
 		"editorconfig-checker": "4.0.2",
 		"eslint": "8.18.0",
 		"eslint-config-prettier": "8.5.0",
