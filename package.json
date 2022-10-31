@@ -20,7 +20,7 @@
 		"lint:stylelint": "stylelint \"**/*.css\""
 	},
 	"dependencies": {
-		"@hotwired/stimulus": "3.1.0",
+		"@hotwired/stimulus": "3.1.1",
 		"body-scroll-lock": "3.1.5",
 		"tabbable": "6.0.0"
 	},
