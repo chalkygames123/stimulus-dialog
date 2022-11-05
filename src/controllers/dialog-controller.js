@@ -1,6 +1,6 @@
 import { Controller } from '@hotwired/stimulus';
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { tabbable } from 'tabbable';
+import { drop, raise } from '../tobari.js';
 
 export default class Dialog extends Controller {
 	static values = {
@@ -66,9 +66,11 @@ export default class Dialog extends Controller {
 
 		this.disableInertRootsDescendants();
 
-		disableBodyScroll(this.element, {
-			reserveScrollBarGap: true,
-		});
+		drop();
+
+		// disableBodyScroll(this.element, {
+		// 	reserveScrollBarGap: true,
+		// });
 
 		this.element.scrollTop = 0;
 
@@ -115,7 +117,9 @@ export default class Dialog extends Controller {
 
 		this.enableInertRootsDescendants();
 
-		enableBodyScroll(this.element);
+		raise();
+
+		// enableBodyScroll(this.element);
 
 		this.previousActiveEl.focus();
 
